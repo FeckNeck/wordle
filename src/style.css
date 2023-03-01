@@ -1,0 +1,42 @@
+:root {
+  --primary: #0d2438;
+  --secondary: #102d44;
+  --ternary: #1e3851;
+  --teal: #2dd4bf;
+  --found: #16a34a;
+  --hint: #f59e0b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./assets/Nunito-Regular.ttf") format("truetype");
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  background-color: var(--primary);
+  color: white;
+  font-family: Nunito;
+}
+
+.found {
+  background-color: var(--found) !important;
+}
+
+.hint {
+  background-color: var(--hint) !important;
+}
+
+.miss {
+  background-color: var(--secondary) !important;
+}
