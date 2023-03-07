@@ -14,7 +14,11 @@
 
 @font-face {
   font-family: "Nunito";
-  src: url("./assets/Nunito-Regular.ttf") format("truetype");
+  src: url("./assets/font/Nunito-Regular.ttf") format("truetype");
+}
+
+html {
+  overflow: hidden;
 }
 
 html,
@@ -29,6 +33,15 @@ body {
   font-family: Nunito;
 }
 
+img {
+  display: block;
+}
+
+button:hover {
+  filter: brightness(90%);
+  cursor: pointer;
+}
+
 .found {
   background-color: var(--found) !important;
 }
@@ -39,4 +52,32 @@ body {
 
 .miss {
   background-color: var(--secondary) !important;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.modal-button {
+  background-color: var(--ternary);
+  border-radius: 0.25rem;
+  border: none;
+  padding: 0.15rem 0.3rem;
+  cursor: pointer;
+  color: inherit;
+  font-weight: bold;
+}
+
+.modal-button > img {
+  transition: transform 0.5s ease;
+}
+
+.modal-button:hover > img {
+  transform: rotate(90deg);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
 import { computed, reactive, watch } from "vue";
-import { useGameStore } from "../../store/index";
+import { useGameStore } from "../../store/game";
 
 const store = useGameStore();
 const { found, hint, miss, currentRow } = storeToRefs(store);
@@ -20,25 +20,41 @@ const keyState = computed(() => ({
 }));
 
 watch(currentRow, () => {
-  if (found.value[currentRow.value - 1].includes(props.letter)) {
-    state.isFound = true;
+  if (currentRow.value != 0) {
+    if (found.value[currentRow.value - 1].includes(props.letter)) {
+      state.isFound = true;
+      state.isHint = false;
+      state.isMiss = false;
+    } else if (hint.value[currentRow.value - 1].includes(props.letter)) {
+      state.isFound = false;
+      state.isHint = true;
+      state.isMiss = false;
+    } else if (miss.value[currentRow.value - 1].includes(props.letter)) {
+      state.isFound = false;
+      state.isHint = false;
+      state.isMiss = true;
+    }
+  } else {
+    state.isFound = false;
     state.isHint = false;
     state.isMiss = false;
-  } else if (hint.value[currentRow.value - 1].includes(props.letter)) {
-    state.isFound = false;
-    state.isHint = true;
-    state.isMiss = false;
-  } else if (miss.value[currentRow.value - 1].includes(props.letter)) {
-    state.isFound = false;
-    state.isHint = false;
-    state.isMiss = true;
   }
 });
 </script>
 
 <template>
   <button class="key" @click="$emit('inputLetter', letter)" :class="keyState">
-    {{ letter }}
+    <img
+      v-if="letter == 'BACKSPACE'"
+      src="../../assets/icons/backspace.svg"
+      alt="backspace"
+    />
+    <img
+      v-else-if="letter == 'ENTER'"
+      src="../../assets/icons/enter.svg"
+      alt="enter"
+    />
+    <span v-else>{{ letter }}</span>
   </button>
 </template>
 
@@ -60,7 +76,7 @@ watch(currentRow, () => {
 
 @media only screen and (max-width: 640px) {
   .key {
-    padding: 0.8rem;
+    padding: 0.7rem;
   }
 }
 </style>

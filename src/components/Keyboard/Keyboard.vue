@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import Key from "./Key.vue";
 import { onMounted } from "vue";
-import { useGameStore } from "../../store/index";
+import { useGameStore } from "../../store/game";
 
 const { inputLetter } = useGameStore();
 
@@ -40,5 +40,12 @@ onMounted(() => {
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
+}
+
+@media only screen and (max-width: 640px) {
+  .keyboard,
+  .keyboard-row {
+    gap: 0.1rem;
+  }
 }
 </style>
