@@ -30,7 +30,6 @@ watch(gameState, () => {
   <div class="container">
     <Header @openStats="isStatsOpen = true" @openHelp="isHelpOpen = true" />
     <div class="game">
-      <h1>{{ solution }}</h1>
       <Grid />
       <Keyboard />
     </div>
